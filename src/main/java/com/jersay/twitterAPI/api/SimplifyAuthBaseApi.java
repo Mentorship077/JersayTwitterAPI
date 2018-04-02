@@ -1,5 +1,6 @@
 package com.jersay.twitterAPI.api;
 
+import com.jersay.twitterAPI.payloads.tweets.HomeTimeLine;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.client.oauth1.AccessToken;
@@ -11,18 +12,17 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Feature;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.List;
 
-import static com.jersay.twitterAPI.constants.TwitterAPIConsts.FRIENDS_TIMELINE_URI;
-import static com.jersay.twitterAPI.constants.TwitterAPIConsts.PASSWORD;
-import static com.jersay.twitterAPI.constants.TwitterAPIConsts.USERNAME;
+import static com.jersay.twitterAPI.constants.TwitterAPIConsts.*;
 
-public class AuthBaseApi {
+public class SimplifyAuthBaseApi {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in, Charset.forName("UTF-8")));
 
 
@@ -52,29 +52,7 @@ public class AuthBaseApi {
         ConsumerCredentials consumerCredentials = new ConsumerCredentials(COSUMER_KEY,COSUMER_SEKRET_KEY);
         Feature filterFeature;
 
-        final OAuth1AuthorizationFlow authFlow = OAuth1ClientSupport.builder(consumerCredentials)
-                .authorizationFlow(
-                        "https://api.twitter.com/oauth/request_token",
-                        "https://api.twitter.com/oauth/access_token",
-                        "https://api.twitter.com/oauth/authorize")
-                .build();
-        final String authorizationUri = authFlow.start();
-        System.out.println(authorizationUri);
-        final String verifier;
-
-        try {
-            verifier = IN.readLine();
-        } catch (final IOException ex) {
-            throw new RuntimeException(ex);
-        }
-
-        final AccessToken accessToken = authFlow.finish(verifier);
-        System.out.println(accessToken.getToken());
-        System.out.println(accessToken.getAccessTokenSecret());
-
-
         AccessToken accessToken1 = new AccessToken(ACCESS_TOKEN,ACCESS_TOKEN_SECRET);
-
         filterFeature = OAuth1ClientSupport.builder(consumerCredentials).feature()
                 .accessToken(accessToken1).build();
 
@@ -89,7 +67,24 @@ public class AuthBaseApi {
         // make requests to protected resources
         // (no need to care about the OAuth signatures)
         final Response response = client.target(FRIENDS_TIMELINE_URI).request().get();
+        if (response.getStatus() != 200) {
+            String errorEntity = null;
+            if (response.hasEntity()) {
+                errorEntity = response.readEntity(String.class);
+            }
+            throw new RuntimeException("Request to Twitter was not successful. Response code: "
+                    + response.getStatus() + ", reason: " + response.getStatusInfo().getReasonPhrase()
+                    + ", entity: " + errorEntity);
+        }
 
-        System.out.println(response.toString());
+
+        final List<HomeTimeLine> statuses = response.readEntity(new GenericType<List<HomeTimeLine>>() {
+        });
+
+        System.out.println("Tweets:\n");
+        for (final HomeTimeLine s : statuses) {
+            System.out.println(s.getText());
+            System.out.println("[posted by " + s.getUser().getName() + " at " + s.getCreatedAt() + "]");
+        }
     }
 }

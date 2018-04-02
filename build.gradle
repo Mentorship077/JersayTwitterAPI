@@ -19,8 +19,13 @@ dependencies {
 
     compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.25.1'
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.25.1'
-    compile group: 'org.glassfish.jersey.security', name: 'oauth2-client', version: '2.26'
+// https://mvnrepository.com/artifact/org.glassfish.jersey.security/oauth1-client
+    compile group: 'org.glassfish.jersey.security', name: 'oauth1-client', version: '2.26'
 
     compile group: 'com.github.scribejava', name: 'scribejava-apis', version: '5.3.0'
+// https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2
+    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.26'
+// https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-moxy
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.26'
 
 }
