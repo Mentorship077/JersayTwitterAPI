@@ -1,17 +1,23 @@
 package com.jersay.twitterAPI.api;
 
 
-import javax.ws.rs.core.MediaType;
+import com.jersay.twitterAPI.payloads.tweets.HomeTimeLine;
+
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
+
+import java.util.List;
 
 import static com.jersay.twitterAPI.constants.TwitterAPIConsts.FRIENDS_TIMELINE_URI;
 
-public class TweetsApi extends AuthBaseApi{
+public class TweetsApi extends Auth1BaseApi {
 
-//    public HomeTimeLine getUserTimeLine() {
-//        return client
-//                .target(FRIENDS_TIMELINE_URI)
-////                .path(String.valueOf(id))
-//                .request(MediaType.APPLICATION_JSON)
-//                .get(HomeTimeLine.class);
-//    }
+    public List<HomeTimeLine> getHomeTimeLineResponse() {
+        Response response = getAuth()
+                .target(FRIENDS_TIMELINE_URI)
+                .request()
+                .get();
+        return response.readEntity(new GenericType<List<HomeTimeLine>>() {
+        });
+    }
 }

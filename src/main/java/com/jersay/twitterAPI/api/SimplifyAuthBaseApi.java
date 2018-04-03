@@ -67,24 +67,21 @@ public class SimplifyAuthBaseApi {
         // make requests to protected resources
         // (no need to care about the OAuth signatures)
         final Response response = client.target(FRIENDS_TIMELINE_URI).request().get();
-        if (response.getStatus() != 200) {
-            String errorEntity = null;
-            if (response.hasEntity()) {
-                errorEntity = response.readEntity(String.class);
-            }
-            throw new RuntimeException("Request to Twitter was not successful. Response code: "
-                    + response.getStatus() + ", reason: " + response.getStatusInfo().getReasonPhrase()
-                    + ", entity: " + errorEntity);
-        }
+//        if (response.getStatus() != 200) {
+//            String errorEntity = null;
+//            if (response.hasEntity()) {
+//                errorEntity = response.readEntity(String.class);
+//            }
+//            throw new RuntimeException("Request to Twitter was not successful. Response code: "
+//                    + response.getStatus() + ", reason: " + response.getStatusInfo().getReasonPhrase()
+//                    + ", entity: " + errorEntity);
+//        }
 
-
-        final List<HomeTimeLine> statuses = response.readEntity(new GenericType<List<HomeTimeLine>>() {
-        });
+        final List<HomeTimeLine> statuses = response.readEntity(new GenericType<List<HomeTimeLine>>() {});
 
         System.out.println("Tweets:\n");
         for (final HomeTimeLine s : statuses) {
-            System.out.println(s.getText());
-            System.out.println("[posted by " + s.getUser().getName() + " at " + s.getCreatedAt() + "]");
+            System.out.println(s.getUser().getId());
         }
     }
 }

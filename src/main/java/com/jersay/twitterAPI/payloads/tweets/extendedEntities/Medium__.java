@@ -2,9 +2,9 @@
 package com.jersay.twitterAPI.payloads.tweets.extendedEntities;
 
 import com.fasterxml.jackson.annotation.*;
-import com.twitterAPI.payloads.tweets.extendedEntities.medium.AdditionalMediaInfo;
-import com.twitterAPI.payloads.tweets.extendedEntities.medium.Sizes_;
-import com.twitterAPI.payloads.tweets.extendedEntities.medium.VideoInfo;
+import com.jersay.twitterAPI.payloads.tweets.extendedEntities.medium.AdditionalMediaInfo;
+import com.jersay.twitterAPI.payloads.tweets.extendedEntities.medium.Sizes_;
+import com.jersay.twitterAPI.payloads.tweets.extendedEntities.medium.VideoInfo;
 
 import java.util.HashMap;
 import java.util.List;

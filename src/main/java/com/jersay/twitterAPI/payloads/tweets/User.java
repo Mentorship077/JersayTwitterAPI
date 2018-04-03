@@ -2,7 +2,7 @@ package com.jersay.twitterAPI.payloads.tweets;
 
 
 import com.fasterxml.jackson.annotation.*;
-import com.twitterAPI.payloads.tweets.entities_.Entities_;
+import com.jersay.twitterAPI.payloads.tweets.entities_.Entities_;
 
 import java.util.HashMap;
 import java.util.Map;

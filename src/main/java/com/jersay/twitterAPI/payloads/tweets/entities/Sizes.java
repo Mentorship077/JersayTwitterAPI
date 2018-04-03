@@ -2,10 +2,10 @@
 package com.jersay.twitterAPI.payloads.tweets.entities;
 
 import com.fasterxml.jackson.annotation.*;
-import com.twitterAPI.payloads.tweets.entities.sizes.Large;
-import com.twitterAPI.payloads.tweets.entities.sizes.Medium_;
-import com.twitterAPI.payloads.tweets.entities.sizes.Small;
-import com.twitterAPI.payloads.tweets.entities.sizes.Thumb;
+import com.jersay.twitterAPI.payloads.tweets.entities.sizes.Large;
+import com.jersay.twitterAPI.payloads.tweets.entities.sizes.Medium_;
+import com.jersay.twitterAPI.payloads.tweets.entities.sizes.Small;
+import com.jersay.twitterAPI.payloads.tweets.entities.sizes.Thumb;
 
 import java.util.HashMap;
 import java.util.Map;

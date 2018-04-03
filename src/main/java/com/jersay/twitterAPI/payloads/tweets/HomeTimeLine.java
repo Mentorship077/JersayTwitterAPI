@@ -1,8 +1,8 @@
 package com.jersay.twitterAPI.payloads.tweets;
 
 import com.fasterxml.jackson.annotation.*;
-import com.twitterAPI.payloads.tweets.entities.Entities;
-import com.twitterAPI.payloads.tweets.extendedEntities.ExtendedEntities;
+import com.jersay.twitterAPI.payloads.tweets.entities.Entities;
+import com.jersay.twitterAPI.payloads.tweets.extendedEntities.ExtendedEntities;
 
 import java.util.HashMap;
 import java.util.Map;
