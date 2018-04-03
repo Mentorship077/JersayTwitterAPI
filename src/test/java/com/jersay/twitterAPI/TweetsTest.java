@@ -18,7 +18,7 @@ import static com.jersay.twitterAPI.constants.TwitterAPIConsts.FRIENDS_TIMELINE_
 import static com.jersay.twitterAPI.constants.TwitterAPIConsts.VERIFY_CREDENTIALS;
 
 
-public class JerseyClientLiveTest {
+public class TweetsTest {
     private static final String COSUMER_KEY = "QK6tJzbhiYgqq9C2eRI8UuIvz";
     private static final String COSUMER_SEKRET_KEY = "gZfMQ8dHr9e8xCidS92NaFFSlRWelurLBNnh03HKN7i2bKJEde";
     private static final String ACCESS_TOKEN = "971038894115475457-6kSyriaT8V4m4NKdoudgYaFXoRuic2h";
@@ -33,6 +33,5 @@ public class JerseyClientLiveTest {
         for (final HomeTimeLine s : timeLines) {
             System.out.println(s.getUser().getId());
         }
-        
     }
 }

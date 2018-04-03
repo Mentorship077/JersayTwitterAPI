@@ -10,7 +10,7 @@ import java.util.List;
 
 import static com.jersay.twitterAPI.constants.TwitterAPIConsts.FRIENDS_TIMELINE_URI;
 
-public class TweetsApi extends Auth1BaseApi {
+public class TweetsApi extends AuthBaseApi {
 
     public List<HomeTimeLine> getHomeTimeLineResponse() {
         Response response = getAuth()
