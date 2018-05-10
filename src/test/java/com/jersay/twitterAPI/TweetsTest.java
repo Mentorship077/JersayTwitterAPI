@@ -1,21 +1,10 @@
 package com.jersay.twitterAPI;
 
-import com.github.scribejava.apis.TwitterApi;
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.builder.api.DefaultApi20;
-import com.github.scribejava.core.model.*;
-import com.github.scribejava.core.oauth.OAuth10aService;
-import com.github.scribejava.core.oauth.OAuth20Service;
 import com.jersay.twitterAPI.api.TweetsApi;
 import com.jersay.twitterAPI.payloads.tweets.HomeTimeLine;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import static com.jersay.twitterAPI.constants.TwitterAPIConsts.FRIENDS_TIMELINE_URI;
-import static com.jersay.twitterAPI.constants.TwitterAPIConsts.VERIFY_CREDENTIALS;
 
 
 public class TweetsTest {
@@ -28,10 +17,14 @@ public class TweetsTest {
 
     @Test
     public void testHomeTimeLine() {
-        List<HomeTimeLine> timeLines = new TweetsApi().getHomeTimeLineResponse();
+        TweetsApi tweetsApi = new TweetsApi();
+        List<HomeTimeLine> timeLines = tweetsApi.getHomeTimeLineResponse().getModels();
+
         System.out.println("Tweets:\n");
         for (final HomeTimeLine s : timeLines) {
             System.out.println(s.getUser().getId());
         }
+
+        tweetsApi.getHomeTimeLineResponse().getResponse();
     }
 }
