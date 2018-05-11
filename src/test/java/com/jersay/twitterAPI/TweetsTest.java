@@ -2,8 +2,10 @@ package com.jersay.twitterAPI;
 
 import com.jersay.twitterAPI.api.TweetsApi;
 import com.jersay.twitterAPI.payloads.tweets.HomeTimeLine;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 
@@ -25,6 +27,8 @@ public class TweetsTest {
             System.out.println(s.getUser().getId());
         }
 
-        tweetsApi.getHomeTimeLineResponse().getResponse();
+        Response response = tweetsApi.getHomeTimeLineResponse().getResponse();
+
+        Assert.assertEquals(response.getStatus(), 200);
     }
 }
